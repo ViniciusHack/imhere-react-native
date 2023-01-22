@@ -1,24 +1,36 @@
 import { useState } from "react";
-import { FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Participant } from "../../components/Participant";
 import { styles } from "./styles";
 
-export type Participant = {
+export type ParticipantType = {
   id: string;
   name: string;
 }
 
 export function Home() {
-  const [participants, setParticipants] = useState<Participant[]>([])
+  const [participants, setParticipants] = useState<ParticipantType[]>([])
   const [newParticipantData, setNewParticipantData] = useState("")
 
   function handleAddParticipant() {
     // setParticipants()
+    if(participants.length > 0) {
+      Alert.alert("Participante existe", "Já existe um participante na lista com esse nome")
+    }
     return console.log("Adicionado")
   }
 
   function handleRemoveParticipant(id: string) {
-    
+    Alert.alert("Remover", `Remover o participante`, [
+      {
+        text: "Sim",
+        onPress: () => Alert.alert("Deletado!")
+      },
+      {
+        text: "Não",
+        style: "cancel"
+      }
+    ])
   }
 
   return (

@@ -1,9 +1,9 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { Participant } from "../../screens/Home";
+import { ParticipantType } from "../../screens/Home";
 import { participantStyles } from "./styles";
 
 interface ParticipantProps {
-  participant: Participant;
+  participant: ParticipantType;
   onRemove: (participantId: string) => void;
 }
 
