@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121214'
+    backgroundColor: '#131016',
+    padding: 24,
   },
   eventName: {
     color: "#FFF",
@@ -15,12 +16,20 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: "#6B6B6B"
   },
+  form: {
+    flexDirection: "row",
+    width: "100%",
+    marginTop: 36,
+    marginBottom: 42
+  },
   input: {
     height: 56,
     backgroundColor: '#1F1E25',
     borderRadius: 5,
     color: '#FFF',
     padding: 16,
+    flex: 1,
+    marginRight: 12,
     fontSize: 16
   },
   button: {
