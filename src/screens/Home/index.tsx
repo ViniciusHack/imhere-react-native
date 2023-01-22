@@ -4,23 +4,29 @@ import { Participant } from "../../components/Participant";
 import { styles } from "./styles";
 
 export type ParticipantType = {
-  id: string;
+  id: number;
   name: string;
 }
 
 export function Home() {
   const [participants, setParticipants] = useState<ParticipantType[]>([])
-  const [newParticipantData, setNewParticipantData] = useState("")
+  const [newParticipantName, setNewParticipantName] = useState("")
 
-  function handleAddParticipant() {
-    // setParticipants()
-    if(participants.length > 0) {
+  function handleAddParticipant() {    
+    if(participants.some(participant => participant.name === newParticipantName)) {
       Alert.alert("Participante existe", "Já existe um participante na lista com esse nome")
     }
-    return console.log("Adicionado")
+
+    const newParticipant = {
+      id: Math.ceil(Math.random() * 1000),
+      name: newParticipantName,
+    }
+
+    setParticipants(prevState => [...prevState, newParticipant])
+    setNewParticipantName('')
   }
 
-  function handleRemoveParticipant(id: string) {
+  function handleRemoveParticipant(id: number) {
     Alert.alert("Remover", `Remover o participante`, [
       {
         text: "Sim",
@@ -48,7 +54,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
-          onChange={(e) => {}}
+          onChangeText={setNewParticipantName}
+          value={newParticipantName}
         />
 
         <TouchableOpacity
@@ -61,7 +68,7 @@ export function Home() {
       
       <FlatList
         data={participants}
-        keyExtractor={key => key.id}
+        keyExtractor={key => String(key.id)}
         renderItem={({ item }) => (
           <Participant
             key={item.id}

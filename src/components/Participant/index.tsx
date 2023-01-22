@@ -4,7 +4,7 @@ import { participantStyles } from "./styles";
 
 interface ParticipantProps {
   participant: ParticipantType;
-  onRemove: (participantId: string) => void;
+  onRemove: (participantId: number) => void;
 }
 
 export function Participant({ participant, onRemove }: ParticipantProps) {
