@@ -30,7 +30,10 @@ export function Home() {
     Alert.alert("Remover", `Remover o participante`, [
       {
         text: "Sim",
-        onPress: () => Alert.alert("Deletado!")
+        onPress: () => {
+          setParticipants(state => state.filter(participant => participant.id !== id))
+          Alert.alert("Deletado!")
+        }
       },
       {
         text: "Não",
